@@ -34,4 +34,4 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./public/css'))
 })
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['sass', 'browserify', 'connect', 'watch']);
