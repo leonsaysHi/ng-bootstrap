@@ -12,7 +12,7 @@
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "gulp-connect": "^3.2.3",
-    "gulp-ruby-sass": "^2.0.6",
+    "gulp-sass": "^2.3.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
