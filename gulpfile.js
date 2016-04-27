@@ -24,13 +24,13 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('app/**/*.js', ['browserify'])
-    gulp.watch('sass/style.sass', ['sass'])
+    gulp.watch('./app/**/*.js', ['browserify'])
+    gulp.watch('./sass/**/*.scss', ['sass'])
 });
 
 gulp.task('sass', function() {
-    return sass('sass/style.sass')
-        .pipe(gulp.dest('public/css'))
+    return sass('./sass/style.scss')
+        .pipe(gulp.dest('./public/css'))
 })
 
 gulp.task('default', ['connect', 'watch']);
