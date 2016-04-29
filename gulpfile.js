@@ -1,37 +1,39 @@
 var gulp = require('gulp')
-var sass = require('gulp-sass')
 var connect = require('gulp-connect')
-// requires browserify and vinyl-source-stream
-var browserify = require('browserify')
-var source = require('vinyl-source-stream')
+var useref = require('gulp-useref')
+var sass = require('gulp-sass')
+var angularTemplateCache = require('gulp-angular-templatecache')
 
-// Connect task
-gulp.task('connect', function () {
-    connect.server({
-        root: 'public',
-        port: 4000
-    })
-});
+// Build
 
-gulp.task('browserify', function() {
-    // Grabs the app.js file
-    return browserify('./app/app.js')
-        // bundles it and creates a file called main.js
-        .bundle()
-        .pipe(source('main.js'))
-        // saves it the public/js/ directory
-        .pipe(gulp.dest('./public/js/'));
-});
-
-gulp.task('watch', function() {
-    gulp.watch('./app/**/*.js', ['browserify'])
-    gulp.watch('./sass/**/*.scss', ['sass'])
-});
-
-gulp.task('sass', function() {
-    return gulp.src('./sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/css'))
+gulp.task('copy', function() {
+    return gulp.src('./app/*.html')
+        .pipe(useref())
+        .pipe(gulp.dest('./public'));
 })
 
-gulp.task('default', ['sass', 'browserify', 'connect', 'watch']);
+// Dev
+gulp.task('watch', function() {
+    gulp.watch('./app/scripts/**/*.tpl.html', ['tpls'])
+    gulp.watch('./app/sass/**/*.scss', ['sass'])
+})
+gulp.task('tpls', function() {
+  return gulp.src('./app/scripts/**/*.tpl.html')
+    .pipe(angularTemplateCache({module:'tpls', standalone:true}))
+    .pipe(gulp.dest('./app/scripts'));
+})
+gulp.task('sass', function() {
+    return gulp.src('./app/sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./app/css'))
+})
+gulp.task('connect', function () {
+    connect.server({
+        root: './app',
+        port: 4000
+    })
+})
+
+gulp.task('build', ['copy']);
+gulp.task('dev', ['sass', 'tpls']);
+gulp.task('default', ['dev', 'connect', 'watch']);

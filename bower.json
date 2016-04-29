@@ -1,0 +1,26 @@
+{
+  "name": "ng-bootstrap",
+  "description": "",
+  "main": "./app/app.js",
+  "license": "ISC",
+  "keywords": [
+    "angular",
+    "loadash"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/bower",
+    "public/*",
+    "app/scripts/templates.js",
+    "app/css/*"
+  ],
+  "dependencies": {
+    "angular": "^1.5.4",
+    "lodash": "^4.11.2",
+    "angular-sanitize": "^1.5.3",
+    "angular-animate": "^1.5.3"
+  }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+    <!-- build:css css/style.css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/libs.js -->
+    <script src="/bower/lodash/dist/lodash.js"></script>
+    <script src="/bower/angular/angular.js"></script>
+    <script src="/bower/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower/angular-animate/angular-animate.js"></script>
+    <script src="/scripts/templates.js"></script>
+    <script src="/scripts/app.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    <div ng-controller="MainCtlr">
+        <h1>{{::test_message}}</h1>
+        <div somedirective></div>
+    </div>
+    <!-- build:js scripts/app.js -->
+    <script src="/scripts/controllers/MainController.js"></script>
+    <script src="/scripts/directives/somedirective.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
