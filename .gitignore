@@ -1,5 +1,5 @@
 node_modules
 bower
-public/*
+public/**/*
 app/scripts/templates.js
-app/css/*
+app/css/**/*
